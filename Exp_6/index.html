@@ -16,18 +16,6 @@
             width: 400px;
         }
 
-        table {
-            margin-top: 20px;
-            width: 90%;
-            border-collapse: collapse;
-        }
-
-        table, th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: center;
-        }
-
         button {
             padding: 5px 15px;
         }
@@ -76,22 +64,6 @@
 
 </form>
 
-<h2>Submitted Data</h2>
-
-<table id="outputTable">
-    <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Password</th>
-        <th>Age</th>
-        <th>DOB</th>
-        <th>Gender</th>
-        <th>Hobbies</th>
-        <th>Course</th>
-        <th>Address</th>
-    </tr>
-</table>
-
 <script>
 function printData() {
 
@@ -112,18 +84,13 @@ function printData() {
         hobbyList += hobby.value + " ";
     });
 
-    let table = document.getElementById("outputTable");
-    let row = table.insertRow(-1);
+    // For now just console output (since table removed)
+    console.log({
+        name, email, password, age, dob,
+        gender, hobbyList, course, address
+    });
 
-    row.insertCell(0).innerHTML = name;
-    row.insertCell(1).innerHTML = email;
-    row.insertCell(2).innerHTML = password;
-    row.insertCell(3).innerHTML = age;
-    row.insertCell(4).innerHTML = dob;
-    row.insertCell(5).innerHTML = gender;
-    row.insertCell(6).innerHTML = hobbyList;
-    row.insertCell(7).innerHTML = course;
-    row.insertCell(8).innerHTML = address;
+    alert("Data submitted successfully!");
 }
 </script>
 

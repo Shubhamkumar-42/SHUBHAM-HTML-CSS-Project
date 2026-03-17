@@ -1,93 +1,47 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Simple Timer</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            color: white;
-        }
-
-        .timer-container {
-            text-align: center;
-            background: rgba(255,255,255,0.1);
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-        }
-
-        #display {
-            font-size: 48px;
-            margin-bottom: 20px;
-        }
-
-        button {
-            padding: 10px 20px;
-            margin: 5px;
-            font-size: 16px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-        }
-
-        .start { background-color: #28a745; color: white; }
-        .stop { background-color: #dc3545; color: white; }
-
-        button:hover {
-            opacity: 0.8;
-        }
-    </style>
+    <title>Form Page</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="timer-container">
-    <h1> Timer</h1>
-    <div id="display">00:00:00</div>
+<h2>Student Registration Form</h2>
 
-    <button class="start" onclick="startTimer()">Start</button>
-    <button class="stop" onclick="stopTimer()">Stop</button>
-</div>
+<form id="myForm">
 
-<script>
-    let seconds = 0;
-    let interval = null;
+    Name: <input type="text" id="name" required><br><br>
+    Email: <input type="email" id="email" required><br><br>
+    Password: <input type="password" id="password" required><br><br>
+    Age: <input type="number" id="age"><br><br>
+    DOB: <input type="date" id="dob"><br><br>
 
-    function updateDisplay() {
-        let hrs = Math.floor(seconds / 3600);
-        let mins = Math.floor((seconds % 3600) / 60);
-        let secs = seconds % 60;
+    Gender:
+    <input type="radio" name="gender" value="Male"> Male
+    <input type="radio" name="gender" value="Female"> Female
+    <br><br>
 
-        document.getElementById("display").innerText =
-            String(hrs).padStart(2, '0') + ":" +
-            String(mins).padStart(2, '0') + ":" +
-            String(secs).padStart(2, '0');
-    }
+    Hobbies:
+    <input type="checkbox" name="hobby" value="Reading"> Reading
+    <input type="checkbox" name="hobby" value="Sports"> Sports
+    <input type="checkbox" name="hobby" value="Music"> Music
+    <br><br>
 
-    function startTimer() {
-        if (interval) return; // prevent multiple timers
-        interval = setInterval(() => {
-            seconds++;
-            updateDisplay();
-        }, 1000);
-    }
+    Course:
+    <select id="course">
+        <option>B.Tech</option>
+        <option>BCA</option>
+        <option>MCA</option>
+    </select>
+    <br><br>
 
-    function stopTimer() {
-        clearInterval(interval);
-        interval = null;
-    }
+    Address:<br>
+    <textarea id="address"></textarea><br><br>
 
-    function resetTimer() {
-        stopTimer();
-        seconds = 0;
-        updateDisplay();
-    }
-</script>
+    <button type="button" onclick="saveData()">Submit</button>
 
+</form>
+
+<script src="script.js"></script>
 </body>
 </html>
