@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Timer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: white;
+        }
+
+        .timer-container {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        #display {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .start { background-color: #28a745; color: white; }
+        .stop { background-color: #dc3545; color: white; }
+
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="timer-container">
+    <h1> Timer</h1>
+    <div id="display">00:00:00</div>
+
+    <button class="start" onclick="startTimer()">Start</button>
+    <button class="stop" onclick="stopTimer()">Stop</button>
+</div>
+
+<script>
+    let seconds = 0;
+    let interval = null;
+
+    function updateDisplay() {
+        let hrs = Math.floor(seconds / 3600);
+        let mins = Math.floor((seconds % 3600) / 60);
+        let secs = seconds % 60;
+
+        document.getElementById("display").innerText =
+            String(hrs).padStart(2, '0') + ":" +
+            String(mins).padStart(2, '0') + ":" +
+            String(secs).padStart(2, '0');
+    }
+
+    function startTimer() {
+        if (interval) return; // prevent multiple timers
+        interval = setInterval(() => {
+            seconds++;
+            updateDisplay();
+        }, 1000);
+    }
+
+    function stopTimer() {
+        clearInterval(interval);
+        interval = null;
+    }
+
+    function resetTimer() {
+        stopTimer();
+        seconds = 0;
+        updateDisplay();
+    }
+</script>
+
+</body>
+</html>
